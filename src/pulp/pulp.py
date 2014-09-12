@@ -749,11 +749,17 @@ class LpAffineExpression(_DICT_TYPE):
     def __radd__(self, other):
         return self.copy().addInPlace(other)
 
+    def __iadd__(self, other):
+        return self.addInPlace(other)
+
     def __sub__(self, other):
         return self.copy().subInPlace(other)
 
     def __rsub__(self, other):
         return (-self).addInPlace(other)
+
+    def __isub__(self, other):
+        return self.subInPlace(other)
 
     def __mul__(self, other):
         e = self.emptyCopy()
@@ -938,11 +944,17 @@ class LpConstraint(LpAffineExpression):
     def __radd__(self, other):
         return self.copy().addInPlace(other)
 
+    def __iadd__(self, other):
+        return self.addInPlace(other)
+
     def __sub__(self, other):
         return self.copy().subInPlace(other)
 
     def __rsub__(self, other):
         return (-self).addInPlace(other)
+
+    def __isub__(self, other):
+        return self.subInPlace(other)
 
     def __mul__(self, other):
         if isinstance(other,LpConstraint):
